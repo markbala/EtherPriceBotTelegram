@@ -3,4 +3,4 @@ Telegram BOT which pulls the latest Ethereum prices and the price spread between
 
 Uses Python3
 
-![alt text](https://github.com/markbala/EtherPriceBotTelegram/screenshotTelegram.PNG
+![alt text](https://github.com/markbala/EtherPriceBotTelegram/blob/master/screenshotTelegram.PNG)
