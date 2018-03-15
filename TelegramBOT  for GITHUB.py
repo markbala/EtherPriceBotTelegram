@@ -6,6 +6,8 @@
 
 import json, requests, time, urllib, sqlite3, os
 
+#TOKEN = "<enter TOKEN which is issued by BOTFather and uncomment this line>"
+
 proxies = None #default is None
 #proxies = {'https': 'https://<address>:<port>', 'http':'http://<address>:<port>'}  #uncomment if you need this to work behind a proxy
 
