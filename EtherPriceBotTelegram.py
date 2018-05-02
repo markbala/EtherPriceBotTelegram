@@ -24,9 +24,9 @@ class TelegramBot(object):
 
     def _getUrl(self,url):
         if proxies:
-            response = requests.get(url, proxies=proxies, timeout=20)
+            response = requests.get(url, proxies=proxies, timeout=100)
         else:
-            response = requests.get(url, timeout=20)
+            response = requests.get(url, timeout=100)
         content = response.content.decode("utf8")
         return content
 
