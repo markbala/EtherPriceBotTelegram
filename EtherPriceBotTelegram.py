@@ -71,22 +71,23 @@ class TelegramBot(object):
 
     def executionFunction(self,updates):
         for update in updates["result"]:
-            text = update["message"]["text"]
-            chat = update["message"]["chat"]["id"]
-            if text == "/ether":
-                    ethkrw = self._getJsonFromURL('https://api.korbit.co.kr/v1/ticker?currency_pair=eth_krw')
-                    ethsgd = self._getJsonFromURL('https://coinhako.com/api/v1/price/currency/ETHSGD')
-                    ethsgd = ethsgd['data']['buy_price']
-                    message1 = "Buy ETH on Coinhako S$ at "+str(ethsgd)
-                    ETHspread = (float(ethkrw["last"])/816.94 - float(ethsgd))/float(ethsgd)
-                    ETHspreadPercentage = "{0:.2f}%".format(ETHspread*100)
-                    message2 = str(ETHspreadPercentage)+" spread to Korbit, which trades at "+str("{0:.2f}".format(float(ethkrw["last"])/816.94))
-                    print(message1+"\n"+message2)
-                    self.sendMessage(message1+"\n"+message2,chat)
-            elif text == '/help':
-                self.sendMessage("'Welcome to Mark's Ether Price Tracking BOT\n\
-'/ether' to retrieve current prices and spread", chat)
-
+            try:
+                text = update["message"]["text"]
+                chat = update["message"]["chat"]["id"]
+                if text == "/ether":
+                        ethkrw = self._getJsonFromURL('https://api.korbit.co.kr/v1/ticker?currency_pair=eth_krw')
+                        ethsgd = self._getJsonFromURL('https://coinhako.com/api/v1/price/currency/ETHSGD')
+                        ethsgd = ethsgd['data']['buy_price']
+                        message1 = "Buy ETH on Coinhako S$ at "+str(ethsgd)
+                        ETHspread = (float(ethkrw["last"])/802.43 - float(ethsgd))/float(ethsgd)
+                        ETHspreadPercentage = "{0:.2f}%".format(ETHspread*100)
+                        message2 = str(ETHspreadPercentage)+" spread to Korbit, which trades at "+str("{0:.2f}".format(float(ethkrw["last"])/816.94))
+                        print(message1+"\n"+message2)
+                        self.sendMessage(message1+"\n"+message2,chat)
+                elif text == '/help':
+                    self.sendMessage("'Welcome to Mark's Ether Price Tracking BOT\n\'/ether' to retrieve current prices and spread", chat)
+            except:
+                pass
 
 while True:
     try:
