@@ -24,7 +24,7 @@ class TelegramBot(object):
 
     def _getUrl(self,url):
         if proxies:
-            response = requests.get(url, proxies=proxies, timeout=100)
+            response = requests.get(url, proxies=proxies,timeout=100)
         else:
             response = requests.get(url, timeout=100)
         content = response.content.decode("utf8")
@@ -75,17 +75,19 @@ class TelegramBot(object):
                 text = update["message"]["text"]
                 chat = update["message"]["chat"]["id"]
                 if text == "/ether":
-                        ethkrw = self._getJsonFromURL('https://api.korbit.co.kr/v1/ticker?currency_pair=eth_krw')
-                        ethsgd = self._getJsonFromURL('https://coinhako.com/api/v1/price/currency/ETHSGD')
-                        ethsgd = ethsgd['data']['buy_price']
-                        message1 = "Buy ETH on Coinhako S$ at "+str(ethsgd)
-                        ETHspread = (float(ethkrw["last"])/802.43 - float(ethsgd))/float(ethsgd)
-                        ETHspreadPercentage = "{0:.2f}%".format(ETHspread*100)
-                        message2 = str(ETHspreadPercentage)+" spread to Korbit, which trades at "+str("{0:.2f}".format(float(ethkrw["last"])/816.94))
-                        print(message1+"\n"+message2)
-                        self.sendMessage(message1+"\n"+message2,chat)
+                    ethkrw = self._getJsonFromURL('https://api.korbit.co.kr/v1/ticker?currency_pair=eth_krw')
+                    ethsgd = self._getJsonFromURL('https://coinhako.com/api/v1/price/currency/ETHSGD')
+                    ethsgd = ethsgd['data']['buy_price']
+                    message1 = "Buy ETH on Coinhako S$ at "+str(ethsgd)
+                    ETHspread = (float(ethkrw["last"])/802.43 - float(ethsgd))/float(ethsgd)
+                    ETHspreadPercentage = "{0:.2f}%".format(ETHspread*100)
+                    message2 = str(ETHspreadPercentage)+" spread to Korbit, which trades at "+str("{0:.2f}".format(float(ethkrw["last"])/816.94))
+                    print(message1+"\n"+message2)
+                    self.sendMessage(message1+"\n"+message2,chat)
                 elif text == '/help':
-                    self.sendMessage("'Welcome to Mark's Ether Price Tracking BOT\n\'/ether' to retrieve current prices and spread", chat)
+                    self.sendMessage("Welcome to Mark's Ether Price Tracking BOT\n\'/ether' to retrieve current ETH prices on CoinHako and Korbit."", chat)
+                elif text == '/start':
+                    self.sendMessage("Hi there, {}! Welcome to Mark's Ether Price Tracking BOT.\nType '/ether' to retrieve current ETH prices on CoinHako and Korbit. Full code available at https://github.com/markbala/EtherPriceBotTelegram".format(update["message"]["from"]["first_name"]),chat)
             except:
                 pass
 
