@@ -1,4 +1,4 @@
-# EtherPriceBotTelegram
+# Ethereum Price Telegram BOT
 Telegram BOT which pulls the latest Ethereum prices and the price spread between Coinhako and Korbit.
 
 Script is written for Python3.
