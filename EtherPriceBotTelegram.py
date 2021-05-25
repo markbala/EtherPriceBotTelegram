@@ -85,7 +85,7 @@ class TelegramBot(object):
                     print(message1+"\n"+message2)
                     self.sendMessage(message1+"\n"+message2,chat)
                 elif text[:5] == '/help':
-                    self.sendMessage("Welcome to Mark's Ether Price Tracking BOT\n\'/ether' to retrieve current ETH prices on CoinHako and Korbit."", chat)
+                    self.sendMessage("Welcome to Mark's Ether Price Tracking BOT\n\'/ether' to retrieve current ETH prices on CoinHako and Korbit.", chat)
                 elif text[:6] == '/start':
                     self.sendMessage("Hi there, {}! Welcome to Mark's Ether Price Tracking BOT.\nType '/ether' to retrieve current ETH prices on CoinHako and Korbit. Full code available at https://github.com/markbala/EtherPriceBotTelegram".format(update["message"]["from"]["first_name"]),chat)
             except:
